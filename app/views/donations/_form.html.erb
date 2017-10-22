@@ -1,0 +1,63 @@
+<% # TODO create helper for context_url %>
+<% # TODO add script for showing custom amount input %>
+
+<%= form_for([@context, @donation]) do |f| %>
+<div class='row justify-content-center'>
+  <div class='col-md-8 col-xl-6'>
+    <div class='card my-4'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-12 text-center'>
+            <h5>Donation Amount</h5>
+          </div>
+        </div>
+        <div class='row justify-content-center'>
+          <div class="btn-group my-3" data-toggle="buttons">
+            <label class="btn btn-outline-primary active">
+              <%= f.radio_button(:amount, 10.00, checked: true, autocomplete: "off", id: "donation_amount") %>
+              <%= f.label :amount, "$10.00" %>
+            </label>
+            <label class="btn btn-outline-primary">
+              <%= f.radio_button(:amount, 25.00, checked: false, autocomplete: "off", id: "donation_amount") %>
+              <%= f.label :amount, "$25.00" %>
+            </label>
+            <label class="btn btn-outline-primary">
+              <%= f.radio_button(:amount, 50.00, checked: false, autocomplete: "off", id: "donation_amount") %>
+              <%= f.label :amount, "$50.00" %>
+            </label>
+            <label class="btn btn-outline-primary">
+              <%= f.radio_button(:amount, 100.00, checked: false, autocomplete: "off", id: "donation_amount") %>
+              <%= f.label :amount, "$100.00" %>
+            </label>
+            <label class="btn btn-outline-primary">
+              <%= f.radio_button(:amount, "Other", checked: false, autocomplete: "off", id: "donation_amount") %>
+              <%= f.label :amount, "Other" %>
+            </label>
+          </div>
+        </div>
+        <div class='row my-3 hidden' id='custom_amount_container'>
+          <div class='col-12'>
+            <%= f.label :amount, "Custom Amount" %>
+            <%= f.number_field :amount, class: 'form-control', disabled: true, id: "c_donation_amount" %>
+          </div>
+        </div>    
+        <div class='row my-3'>
+          <div class='col-12'>
+            <%= f.label :comment, "Comments" %>
+            <%= f.text_area :comment , class: 'form-control', rows: 5 %>
+          </div>
+        </div>   
+        <div class='row my-3 justify-content-center'>
+          <div class='col-md-5 my-2'>
+            <%= f.submit(@donation.new_record? ? "Input Payment Details" : "Update Donation", class: 'btn btn-success btn-block') %>
+          </div>
+          <div class='col-md-5 my-2'>
+            <%= link_to "Cancel", @context, class: 'btn btn-danger btn-block' %>
+          </div>        
+        </div>   
+      </div>  
+    </div>
+  </div>
+</div>
+
+<% end %>

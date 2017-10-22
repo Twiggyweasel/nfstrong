@@ -1,0 +1,122 @@
+<%= render 'shared/admin_title', title: 'Dashboard' %>
+<div class='row m-4'>
+  <div class='col-xl-3 col-md-6 my-2'>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-4 text-center'>
+            <i class='fa fa-vcard fa-4x'></i>
+          </div>
+          <div class='col-8'>
+            <div class='numbers'>
+            <p>
+              Users
+            </p>
+            <%= @users.count %>
+            </div>
+          </div>
+        </div>
+        <div class='row px-3'>
+          <hr>
+          <div class='stats'>
+            <i class='fa fa-refresh'></i>
+            Updated Now
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-xl-3 col-md-6 my-2'>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-4 text-center'>
+            <i class='fa fa-usd fa-4x'></i>
+          </div>
+          <div class='col-8'>
+            <div class='numbers'>
+            <p>
+              Raised
+            </p>
+            $30,000.00
+            </div>
+          </div>
+        </div>
+        <div class='row px-3'>
+          <hr>
+          <div class='stats'>
+            <i class='fa fa-calendar-o'></i>
+            As of 10/19/17
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-xl-3 col-md-6 my-2'>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-4 text-center'>
+            <i class='fa fa-calendar fa-4x'></i>
+          </div>
+          <div class='col-8'>
+            <div class='numbers'>
+            <p>
+              Active Events
+            </p>
+            <%= @events.active.count %>
+            </div>
+          </div>
+        </div>
+        <div class='row px-3'>
+          <hr>
+          <div class='stats'>
+            <i class='fa fa-refresh'></i>
+             Updated Now
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-xl-3 col-md-6 my-2'>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-4 text-center'>
+            <i class='fa fa-gift fa-4x'></i>
+          </div>
+          <div class='col-8'>
+            <div class='numbers'>
+              <p>Donations</p>
+              85
+            </div>
+          </div>
+        </div>
+        <div class='row px-3'>
+          <hr>
+          <div class='stats'>
+            <i class='fa fa-clock-o'></i>
+            in last hour
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='row m-4'>
+  <div class='col-lg-4 col-sm-6'>
+    <div class='card card-block'>
+
+    </div>
+  </div>
+  <div class='col-lg-4 col-sm-6'>
+    <div class='card card-block'>
+
+    </div>
+  </div>
+  <div class='col-lg-4 col-sm-6'>
+    <div class='card card-block'>
+
+    </div>
+  </div>
+</div>

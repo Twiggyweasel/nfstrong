@@ -1,0 +1,11 @@
+<tr>
+  <td><%= user.id %></td>
+  <td><%= user.name.titleize %></td>
+  <td><%= user.registrations.count %></td>
+  <td><%= user.donations.count %></td>
+  <td>
+    <%= link_to(admin_user_path(user)) do fa_icon 'eye', class: 'mx-2' end %>
+    <%= link_to(edit_admin_user_path(user)) do fa_icon 'pencil', class: 'mx-2' end %>
+    <%= link_to(admin_user_path(user), method: :delete, data: { confirm: "Are you sure, this action cannot be undone" }) do fa_icon 'trash', class: 'mx-2' end %>
+  </td>
+</tr>

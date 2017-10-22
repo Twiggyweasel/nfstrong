@@ -1,0 +1,27 @@
+<div class='row mx-4'>
+  <div class='col-12 my-2'>
+    <div class='card'>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-lg-4'>
+            <%= registration.user.name.titleize %>
+          </div>
+          <div class='col-lg-2'>
+            4
+          </div>
+          <div class='col-lg-2'>
+            $100.00
+          </div>
+          <div class='col-lg-2'>
+            <%= registration.paid? ? "Yes" : "No" %>
+          </div>
+          <div class='col-lg-2 text-right'>
+            <%= link_to(admin_event_registration_path(@event, registration)) do fa_icon 'eye', class: 'mx-2' end %>
+            <%= link_to(edit_admin_event_registration_path(@event, registration)) do fa_icon 'pencil', class: 'mx-2' end %>
+            <%= link_to(admin_event_registration_path(@event, registration), method: :delete, data: { confirm: "Are you sure, this can not be undone" }) do fa_icon 'trash', class: 'mx-2' end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

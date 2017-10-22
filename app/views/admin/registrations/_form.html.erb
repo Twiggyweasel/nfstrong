@@ -1,0 +1,48 @@
+<%= form_for([:admin, @event, @registration]) do |f| %>
+  <% if @registration.errors.any? %>
+    <%= render 'shared/errors', errors: @registration.errors %>
+  <% end %>
+  <div class='row'>
+    <div class='col-12 my-2'>
+      <%= f.label :user_id, "User Registering" %>
+      <%= f.select(:user_id, options_for_select(User.all.collect { |x| [x.name, x.id] }, f.object.user_id), { prompt: 'Select a User' }, class: 'form-control') %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 my-2'>
+      <%= f.label :fee %>
+      <%= f.select :fee, options_for_select([['Adult - $25.00', 25.00], ['Child - $12.00', 12.00]], f.object.fee), { prompt: 'Select a Fee' }, class: 'form-control' %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <label class="custom-control custom-checkbox">
+        <%= f.check_box :accepted_terms, class: 'custom-control-input' %>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Terms Accepted</span>
+      </label>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <label class="custom-control custom-checkbox">
+        <%= f.check_box :paid, class: 'custom-control-input' %>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Registration Paid</span>
+      </label>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-md-6 my-3'>
+      <%= f.submit(@registration.new_record? ? 'Create Registration' : 'Update Registration', class: 'btn btn-success btn-block') %>
+    </div>
+    <div class='col-md-6 my-3'>
+      <%= link_to @registration.new_record? ? 'Cancel' : 'Discard Changes', @registration.new_record? ? admin_event_registrations_path(@event) : admin_event_registration_path(@event, @registration), class: 'btn btn-danger btn-block' %>
+    </div>
+  </div>
+<% end %>

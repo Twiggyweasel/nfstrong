@@ -1,0 +1,107 @@
+<div class='row mx-4 mt-4'>
+  <div class='col-11'>
+    <h1 class='display-4'><%= event_name(@event) %></h1>
+    <hr class='mb-0'/>
+  </div>
+  <div class='col-1'>
+    <%= link_to(event_refresh_admin_event_path(@event), class: 'btn btn-secondary float-right') do fa_icon 'refresh' end %>
+  </div>
+</div>
+<div class='row mx-5 mb-0'>
+  <ul class="nav">
+  <li class="nav-item">
+    <%= link_to(edit_admin_event_path(@event), class: 'nav-link') do fa_icon 'pencil', text: 'Edit' end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to(settings_admin_event_path(@event), class: 'nav-link') do fa_icon 'gear', text: 'Settings' end %>
+  </li>
+  <li class='nav-item'>
+    <%= link_to(admin_event_registrations_path(@event), class: 'nav-link') do fa_icon 'group', text: 'Manage Registrations' end %>
+  </li>
+  <% if @event.has_resources %>
+  <li class="nav-item">
+    <%= link_to(settings_admin_event_path(@event), class: 'nav-link') do fa_icon 'file-text-o', text: "Manage Resources" end %>
+  </li>
+  <% end %>
+    <li class="nav-item">
+    <%= link_to(transactions_admin_event_path(@event), class: 'nav-link') do fa_icon 'credit-card', text: "Transactions" end %>
+  </li>
+</ul>
+</div>
+<div class='row m-4'>
+  <div class='col-md-4'>
+    <div class='card'>
+      <div class='card-body'>
+      <h2>Attendees</h2>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Guests</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @event.registrations.each do |r| %>
+            <tr>
+              <td>Richard Wise</td>
+              <th><%= number_to_currency(r.fee) %></th>
+              <th>4</th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-md-4'>
+    <div class='card'>
+      <div class='card-body'>
+      <h2>Sponsors</h2>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @event.sponsors.each do |s| %>
+            <tr>
+              <td><%= s.name.titleize %></td>
+              <th><%= s.category %></th>
+              <th><%= number_to_currency(s.fee) %></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-md-4'>
+    <div class='card'>
+      <div class='card-body'>
+      <h2>Donations</h2>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @event.donations.each do |d| %>
+            <tr>
+              <td>Richard Wise</td>
+              <th><%= number_to_currency(d.amount) %></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>

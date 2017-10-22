@@ -1,0 +1,20 @@
+<div class='row'>
+  <div class='col-12 text-center mt-3'>
+    <%= link_to(root_path) do %><h4 class='w'>NFSTRONG</h4><% end %>
+  </div>
+</div>
+<div class='row justify-content-center'>
+  <div class='col-10'>
+    <hr />
+  </div>
+</div>
+<div class='row m-3'>
+  <nav class="nav flex-column">
+    <%= link_to(admin_events_path, class: "nav-link active w") do fa_icon 'calendar', text: 'Events', class: 'pr-2' end %>
+    <%= link_to(admin_users_path, class: 'nav-link w') do fa_icon 'user', text: 'Users', class: 'pr-2' end %>
+    <%= link_to(admin_payments_path, class: 'nav-link w') do fa_icon 'usd', text: 'Payments', class: 'pr-2' end %>
+    <%= link_to(admin_donations_path, class: 'nav-link w') do fa_icon 'heart', text: 'Donations', class: 'pr-2' end %>
+    <%= link_to(admin_emails_path, class: 'nav-link w') do fa_icon 'send', text: 'Emails', class: 'pr-2' end %>
+    <%= link_to(admin_reports_path, class: 'nav-link w') do fa_icon 'pie-chart', text: 'Reports', class: 'pr-2' end %>
+  </nav>
+</div>

@@ -1,0 +1,174 @@
+<%= form_for([:admin, @event]) do |f| %>
+  <div class='row my-3'>
+    <div class='col-12'>
+      <h2>Basic Details</h2>
+    </div>
+  </div>
+  <% if !@event.new_record? %>
+    <div class='row my-2'>
+      <div class='col-md-9 my-2'>
+        <%= f.label :slug %>
+        <%= f.text_field :slug, class: 'form-control', disabled: !@event.custom_slug %>
+      </div>
+      <div class='col-md-3 my-2'>
+        <label class="custom-control custom-checkbox">
+          <%= f.check_box :custom_slug, class: 'custom-control-input' %>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Use Custom URL</span>
+        </label>
+
+      </div>
+    </div>
+  <% end %>
+  <div class='row my-2'>
+    <div class='col-md-6'>
+      <%= f.label :goal %>
+      <%= f.number_field :goal, class: 'form-control' %>
+      <% if @event.errors[:goal].present? %>
+        <div class="invalid-feedback">
+          <%= @event.errors[:goal][0] %>.
+        </div>
+      <% end %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.label :category %>
+      <%= f.select :category, options_for_select(categories, :selected => f.object.category), { prompt: 'Select a Category' } ,class: 'form-control' %>
+      <% if @event.errors[:category].present? %>
+        <div class="invalid-feedback">
+          <%= @event.errors[:category][0] %>.
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class='row my-2'>
+    <div class='col-6'>
+      <%= f.label :event_start %>
+      <%= f.datetime_field :event_start, class: 'form-control' %>
+      <% if @event.errors[:event_start].present? %>
+        <div class="invalid-feedback">
+          <%= @event.errors[:event_start][0] %>.
+        </div>
+      <% end %>
+    </div>
+    <div class='col-6'>
+      <%= f.label :event_stop %>
+      <%= f.datetime_field :event_stop, class: 'form-control' %>
+      <% if @event.errors[:event_stop].present? %>
+        <div class="invalid-feedback">
+          <%= @event.errors[:event_stop][0] %>.
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 my-2'>
+      <label class="custom-control custom-checkbox">
+        <%= f.check_box :is_private, class: 'custom-control-input' %>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Make this event private</span>
+      </label>
+    </div>
+  </div>
+  <div class='row my-3'>
+    <div class='col-12'>
+      <h2>Site Images</h2>
+    </div>
+  </div>
+  <div class='row my-3'>
+    <div class='col-md-6'>
+      <%= f.label :banner_img, "Banner Image" %>
+      <%= f.file_field :banner_img, class: 'form-control-file' %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.label :card_img, "Card Image" %>
+      <%= f.file_field :card_img, class: 'form-control-file' %>
+    </div>
+  </div>
+  <div class='row my-3'>
+    <div class='col-12'>
+      <h2>Location Details</h2>
+    </div>
+  </div>
+  <div class='row my-2'>
+    <div class='col-md-12'>
+      <%= f.label :venue_name %>
+      <%= f.text_field :venue_name, class: 'form-control' %>
+      <% if @event.errors[:venue_name].present? %>
+        <div class="invalid-feedback">
+          <%= @event.errors[:venue_name][0] %>.
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class='row my-2'>
+    <div class='col-md-12'>
+      <%= f.label :street %>
+      <%= f.text_field :street, class: 'form-control' %>
+      <% if @event.errors[:street].present? %>
+        <div class="invalid-feedback">
+          <%= @event.errors[:street][0] %>.
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class='row my-2'>
+    <div class='col-md-5'>
+      <%= f.label :city %>
+      <%= f.text_field :city, class: 'form-control' %>
+      <% if @event.errors[:city].present? %>
+        <div class="invalid-feedback">
+          <%= @event.errors[:city][0] %>.
+        </div>
+      <% end %>
+    </div>
+
+    <div class='col-md-3'>
+      <%= f.label :state %>
+      <%= f.select :state, options_for_select(states, :selected => f.object.state), { prompt: 'Select a State' } , class: 'form-control' %>
+      <% if @event.errors[:state].present? %>
+        <div class="invalid-feedback">
+          <%= @event.errors[:state][0] %>.
+        </div>
+      <% end %>
+    </div>
+        <div class='col-md-4'>
+      <%= f.label :zipcode %>
+      <%= f.text_field :zipcode, class: 'form-control' %>
+      <% if @event.errors[:zipcode].present? %>
+        <div class="invalid-feedback">
+          <%= @event.errors[:zipcode][0] %>.
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class='row my-2'>
+    <div class='col-md-12'>
+      <%= f.label :desc %>
+      <%= f.text_area :desc, class:'tinymce', rows: 25 %>
+    </div>
+  </div>
+  <div class='row my-2'>
+    <div class='col-md-6 my-2'>
+      <%= f.submit(@event.new_record? ? "Create Event" : "Update Event", class: 'btn btn-success btn-block') %>
+    </div>
+    <div class='col-md-6 my-2'>
+      <%= link_to @event.new_record? ? "Discard Changes" : "Cancel", admin_events_path, class: 'btn btn-danger btn-block' %>
+    </div>
+  </div>
+<% end %>
+
+
+<%= tinymce_assets %>
+<%= tinymce %>
+
+<script>
+  $('#event_custom_slug').click(function() {
+  if($(this).is(":checked")) {
+    console.log("true");
+    $('#event_slug').attr('disabled', false);
+  } else {
+    console.log("false");
+    $('#event_slug').attr('disabled', true);
+  }
+});
+</script>

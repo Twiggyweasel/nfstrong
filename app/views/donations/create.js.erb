@@ -1,0 +1,7 @@
+<% if @donation.errors.any? %>
+  alert("You have the following errors: <%= @donation.errors.full_messages %>");
+<% else %>
+$("#donations").prepend("<%= escape_javascript(render 'donation', donation: @donation ) %>");
+$("#donation_amount").val("");
+$("#donation_payee").val("");
+<% end %>

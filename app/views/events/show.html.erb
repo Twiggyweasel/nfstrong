@@ -1,0 +1,271 @@
+<% # TODO move has_sponsors logic to helper %>
+<% # TODO move has_registrations logic to helper %>
+<% # TODO move has_sponors logic to helper %>
+<% # TODO move has_donations logic to helper %>
+<% # TODO wire top teams table to team model %>
+<% # TODO wire donation carousel to attendee model %>
+<% # TODO include google maps api call %>
+<% # TODO move raised logic to helper %>
+<% # TODO update description to use event model %>
+<% # TODO update social elements %>
+<% title @event.slug %>
+<%= render 'header_nav_hidden' %>
+
+<div class='row header-main'>
+  <div class='header-card'>
+    <span class='header-title'>
+      <h3 class='display-3'><%= event_name(@event) %></h3>
+    </span>
+    <span class='header-text'>
+      <i class='fa fa-map-marker'></i> <%= @event.venue_name %>
+      <br />
+      <i class='fa fa-calendar'></i> <%= @event.event_start.strftime("%A, %b %d, %Y") %>
+      <br />
+      <i class='fa fa-clock-o'></i> <%= @event.event_start.strftime("%I:%M %p") + " - " + @event.event_stop.strftime("%I:%M %p") %>
+    </span>
+  </div>
+</div>
+
+<div class='row mb-5 my-3 justify-content-md-center text-center'>
+  <div class='col-lg-2 my-2'>
+    <a href='#collapseRegister' class="btn btn-light btn-lg btn-block btn-shadow" data-toggle="collapse" aria-expanded="false" aria-controls="collapseRegister">
+      <i class='fa fa-ticket icon-pop-blue w' aria-hidden="true"></i> Attend
+    </a>
+  </div>
+
+  <% if @event.has_sponsors %>
+  <div class='col-lg-2 my-2'>
+    <%= link_to(new_event_sponsor_path(@event), class: "btn btn-light btn-lg btn-block btn-shadow") do %>
+      <i class='fa fa-building-o icon-pop-orange w' aria-hidden="true"></i> Sponsor
+    <% end %>
+  </div>
+  <% end %>
+  <% if @event.has_donations %>
+  <div class='col-lg-2 my-2'>
+    <a href='#collapseDonation' class="btn btn-light btn-lg btn-block btn-shadow" data-toggle="collapse" aria-expanded="false" aria-controls="collapseDonation">
+      <i class='fa fa-usd icon-pop-green w' aria-hidden="true"></i> Donate
+    </a>
+  </div>
+  <% end %>
+</div>
+<div class="collapse mb-4" id="collapseRegister">
+  <div class='triangle'></div>
+  <div class='row' style='background-image: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);'>
+    <div class='col-md-2 offset-md-3 py-3'>
+      <%= link_to(new_event_registration_path(@event), class: "btn btn-secondary btn-lg btn-block btn-shadow") do %>
+        <i class='fa fa-user fa-2x'></i> Register as an Individual
+      <% end %>
+    </div>
+    <div class='col-md-2 py-3'>
+      <div class='card'>
+        <p class='card-body'>
+          <i class='fa fa-group fa-2x'></i> Create a Team and Register
+        </p>
+      </div>
+    </div>
+    <% if @event.has_fundraisers %>
+     <div class='col-md-2 py-3'>
+      <div class='card card-block'>
+        <p class='card-text'>
+          <i class='fa fa-usd fa-2x'></i> Fundraise and Attend
+        </p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class='row justify-content-center text-center mb-5'>
+  <div class='col-xl-2 col-lg-4 offset-xl-2 my-2'>
+    <h1 class='display-3'><%= @event.total_registrations %></h1>
+    <h4>Going</h4>
+  </div>
+  <div class='col-xl-2 offset-xl-1 col-lg-4 my-2'>
+    <h1 class='display-3'>1</h1>
+    <h4>Teams</h4>
+  </div>
+  <div class='col-xl-2 offset-xl-1 col-lg-4 my-2'>
+    <h1 class='display-3'><%= @event.donations.count %></h1>
+    <h4>Donations</h4>
+  </div>
+</div>
+<% if @event.has_progress %>
+<div class='row justify-content-center'>
+  <div class='col-lg-10 col-sm-10'>
+    <div class="card">
+      <div class='card-body'>
+        <h4 class='card-title text-center'>We're Making Strong Progress</h4>
+        <p>
+          <span>Raised: $1000.00</span>
+          <span style='float: right;'>Goal: $4000.00</span>
+        </p>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<div class='row my-3 justify-content-center'>
+  <div class='col-md-8 col-xl-7 text-center'>
+    <div class='row'>
+      <div class='col-12'>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit magna tortor, ac porta dui tempus a.
+          Duis et eleifend urna. Duis tempus, justo rhoncus elementum porta, tortor sem cursus dui, at porttitor justo quam rhoncus ex.
+          In consequat vitae neque sed varius. Sed porttitor porttitor sem. Maecenas sit amet lectus vitae sapien pretium pulvinar.
+          Curabitur laoreet vitae neque vel pulvinar. Praesent condimentum at nisl non cursus.
+          Praesent quam risus, sagittis nec sapien sit amet, bibendum fermentum est. Maecenas ac laoreet nisi.
+          Etiam in posuere diam, ut efficitur mi.
+          <br />
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis ultrices lectus, nec luctus enim malesuada quis.
+          Aenean lobortis mauris ut nibh vestibulum malesuada. Quisque eleifend tristique ante, quis congue odio tristique nec.
+          Nam ac ultricies ligula, et vehicula mauris. Ut tellus mi, vehicula in imperdiet at, mollis eget leo.
+          Aliquam sollicitudin gravida tortor aliquet suscipit. Phasellus interdum in ante sollicitudin elementum.
+          Proin iaculis ultricies ante, bibendum pretium tortor tincidunt eget. Nunc pretium lectus ut nunc hendrerit, ut faucibus turpis lobortis.
+          Praesent at velit ut tortor mollis venenatis. Aenean volutpat nisl eget enim ultricies volutpat. Sed malesuada nisi velit.
+          Aliquam placerat rutrum leo eget tristique.
+          <br />
+          Integer turpis mi, sollicitudin ut rutrum ac, pretium consectetur nisl.
+          Vestibulum vel nulla eget metus efficitur malesuada at sed quam. Phasellus id tincidunt nunc.
+          Mauris placerat quam laoreet diam commodo pharetra. Nulla et rutrum lorem. Curabitur nisl orci, aliquam id gravida id, ultrices et ipsum.
+          Sed id venenatis velit. Vestibulum vitae fermentum ante. Quisque quis congue metus. Maecenas ut mi accumsan, maximus quam in, interdum eros.
+          Proin nisl urna, fringilla non lacinia at, egestas eget velit. Cras libero erat, scelerisque eu metus hendrerit, sollicitudin dapibus odio.
+          <br />
+          Duis nec purus sapien. Morbi consectetur, lacus et porttitor bibendum, elit urna pretium metus, at euismod ante sem in tortor.
+          Aenean consectetur dictum dui ac venenatis. Sed luctus laoreet enim ac luctus. Proin lacinia tellus quis sem iaculis, vitae finibus nulla vehicula.
+          Quisque vitae varius eros, non tempor nulla. In euismod magna pellentesque massa scelerisque, et tempor libero sodales. Fusce ultrices porttitor convallis.
+          <br />
+          Nunc facilisis nisi non consequat varius. Pellentesque dictum bibendum finibus. Integer et laoreet dui.
+          Suspendisse eget convallis nibh. Nullam dapibus non ligula sit amet fringilla. Maecenas pretium porttitor lectus eu vehicula.
+          Vivamus ac leo sagittis, tincidunt magna quis, aliquet risus. Nam at fermentum sapien.
+          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer elementum cursus maximus.
+          Vestibulum nec porttitor nulla. Mauris aliquet accumsan tellus vitae iaculis.
+          Nam tincidunt nulla quis massa consequat, sit amet varius orci commodo. Praesent ut leo enim.
+        </p>
+      </div>
+    </div>
+   <div class='row hidden-sm-down justify-content-md-center'>
+     <div class='col-10'>
+       <h4>Share This Event</h4>
+     </div>
+   </div>
+   <div class='row hidden-sm-down justify-content-md-center'>
+     <div class='col-10 offset-1'>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link px-4" href="#"><i class='fa fa-facebook-square fa-3x social-icon' style='color: #3b5998;'></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-4" href="#"><i class='fa fa-twitter-square fa-3x social-icon' style='color: #00b6f1'></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-4" href="#"><i class='fa fa-google-plus fa-3x social-icon' style='color: #df4a32'></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-4" href="#"><i class='fa fa-envelope fa-3x social-icon' style='color: #A290B7'></i></a>
+        </li>
+      </ul>
+     </div>
+   </div>
+  </div>
+  <div class='col-md-5 col-xl-3'>
+    <div class='row justify-content-md-center'>
+      <div class='col-10 offset-1 header-yellow'>
+        <h3 class='w'>Event Coordinators</h3>
+
+      </div>
+    </div>
+    <div class='row my-3 justify-content-md-center'>
+      <div class='col-5'>
+        <img src="<%= image_url("nfcirclelogo-sm.png") %>", class='img-fluid d-block mx-auto pt-2' style='max-width: 100px;'>
+      </div>
+      <div class='col-5'>
+        <a href='https://nfnetwork.org'>
+        <img src="<%= image_url("nfcirclelogo-sm.png") %>", class='img-fluid d-block mx-auto pt-2' style='max-width: 100px;'>
+        </a>
+      </div>
+    </div>
+    <%= render "activity_block" if @event.activities.any? %>
+    <div class='row justify-content-md-center'>
+      <div class='col-10 header-red'>
+        <h3 class='w'>Event Images</h3>
+      </div>
+    </div>
+    <div class='row my-3 justify-content-md-center'>
+      <div class='col-10'>
+        <div class='row'>
+          <div class='col-6 my-2'>
+            <img src='https://placehold.it/150x150' class='img-fluid img-thumbnail'>
+          </div>
+          <div class='col-6 my-2'>
+            <img src='https://placehold.it/150x150' class='img-fluid img-thumbnail'>
+          </div>
+          <div class='col-6 my-2'>
+            <img src='https://placehold.it/150x150' class='img-fluid img-thumbnail'>
+          </div>
+          <div class='col-6 my-2'>
+            <img src='https://placehold.it/150x150' class='img-fluid img-thumbnail'>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='row my-4'>
+
+</div>
+<div class='row my-2 justify-content-center'>
+  <div class='col-lg-6 col-xl-5 offset-xl-1 my-2'>
+    <div class='card'>
+      <div class='card-body'>
+        <h3>Top Fundraisers</h3>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Team</th>
+              <th>Amount Raised</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class='col-lg-6 col-xl-5 my-2'>
+    <div class='card'>
+      <div class='card-body'>
+        <h3>Top Teams</h3>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Members</th>
+              <th>Amount Raised</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='row my-4 text-center'>
+  <div class='col-12'>
+    <h2>A Special Thank You to our Sponsors</h2>
+  </div>
+</div>
+<div class='row my-4'>
+
+</div>

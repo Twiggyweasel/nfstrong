@@ -1,0 +1,35 @@
+<div class='row' id='event-header' style="position: fixed;
+  background-color: #ebeff9;
+  z-index: 1020;
+  width: 100%;
+  top:56px;
+  display: none;
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-top-color: rgb(229, 230, 233);
+  border-right-color: rgb(223, 224, 228);
+  border-bottom-color: rgb(208, 209, 213);
+  border-left-color: rgb(223, 224, 228);">
+  <div class='col-xl-6 col-lg-8 col-md-9'>
+    <h6 style='padding-top: 0.7rem;'><%= link_to event_name(@event), event_path(@event), class: 'b' %> | <%= link_to("https://www.google.com/maps/place/Stump+Park", class: 'b') do %> <i class='fa fa-map-marker b'></i>  <%= @event.venue_name.titleize %> <% end %> | <i class='fa fa-calendar'></i> <%= @event.event_start.strftime("%A, %b %d, %Y") %></h6>
+  </div>
+  <div class='col-xl-6 col-lg-4 col-md-3 hidden-sm-down'>
+    <ul class="nav justify-content-end">
+      <!--<li class='nav-item'>-->
+      <!--  <span class='nav-link' style='font-weight: 600;'>Share</span>-->
+      <!--</li>-->
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class='fa fa-facebook-square social-icon' style='color: #3b5998;'></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class='fa fa-twitter-square social-icon' style='color: #00b6f1'></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class='fa fa-google-plus social-icon' style='color: #df4a32'></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class='fa fa-envelope social-icon' style='color: #A290B7'></i></a>
+      </li>
+    </ul>
+  </div>
+</div>

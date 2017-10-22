@@ -1,0 +1,23 @@
+<%= render 'shared/admin_title', title: "Profile: #{@user.name.titleize}" %>
+<div class='row mx-4'>
+  <div class='col-12 my-2'>
+    <%= link_to(edit_admin_user_path(@user), class: 'btn btn-sm btn-primary mx-2') do fa_icon 'pencil', text: 'Edit' end %>
+    <%= link_to(admin_user_path(@user), class: 'btn btn-sm btn-danger mx-2') do fa_icon 'trash', text: 'Delete' end %>
+    <p class='text-muted float-right'>Last Login: 12/20/16</p>
+  </div>
+</div>
+<div class='row mx-4'>
+  <div class='col-6'>
+    <h2>Events Attending</h2>
+    <hr />
+    <p>
+      <ul>
+        <% @user.registrations.each do |registration| %>
+          <li><%= link_to registration.event.event_start.strftime('%Y') + " " + registration.event.city + " " + registration.event.category,admin_event_path(registration.event) %>
+           -  <%= link_to "View Regisration", admin_event_registration_path(registration.event, registration) %>
+          </li>
+        <% end %>
+      </ul>
+    </p>
+  </div>
+</div>

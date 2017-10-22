@@ -1,0 +1,66 @@
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-12 mt-3'>
+      <h1 class='display-4'>Donations for <%= @context.event.category + ' ' + @context.event.city %></h1>
+    </div>
+    <div class='row'>
+      <div class='col-12 mb-3'>
+        <%= link_to(user_path(@context.user_id), class: 'btn btn-info ml-3') do fa_icon 'address-card-o', text: 'Return to profile' end %>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'>
+        <div class='card-body'>
+          <h2 class='card-title'>Report Offline Donation</h2>
+          <%= form_for([@context, Donation.new], remote: true, :html => { class: 'form-inline' }) do |f| %>
+            <label class="sr-only" for="inlineFormInputName2">Payee Name</label>
+            <%= f.text_field :payee, class: 'form-control mb-2 mr-sm-2 mb-sm-0', placeholder: 'Payee' %>
+            <label class="sr-only" for="inlineFormInputGroupUsername2">Donation Amount</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <div class="input-group-addon"><%= fa_icon 'usd' %></div>
+              <%= f.number_field :amount, class: "form-control", placeholder: "0.00", step: 'any' %>
+            </div>
+            <%= f.hidden_field :category, value: "offline" %>
+            <%= f.hidden_field :user_id, value: 1 %>
+            <%= f.submit("submit", class: 'btn btn-success') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 my-3'>
+      <div class="alert alert-primary" role="alert">
+        <h4 class="alert-heading">Offline Donations</h4>
+        <p>Offline donations can be brought the registration table on the day of
+        the event or mailed to our central office 213 S. Wheaton Ave Wheaton, IL 60187</p>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'>
+        <div class='card-body'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Payee</th>
+                <th>Amount</th>
+                <th>Processed</th>
+              </tr>
+            </thead>
+            <tbody id='donations'>
+              <%= render @context.donations %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+

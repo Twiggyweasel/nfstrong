@@ -1,0 +1,85 @@
+<%= form_for([@event, @fundraiser]) do |f| %>
+  <%= render 'shared/errors', errors: @fundraiser.errors if @fundraiser.errors.any? %>
+
+<div class='row'>
+  <div class='col-md-8 offset-md-2 col-xl-4 offset-xl-4'>
+    <div class='card card-block'>
+      <!--<div class='row'>-->
+      <!--  <div class='col-12 my-2 text-center'>-->
+          
+      <!--  </div>    -->
+      <!--</div>-->
+      <!--<div class='row'>-->
+      <!--  <div class='col-12 my-2'>-->
+      
+      <!--  </div>  -->
+      <!--</div>-->
+      <div class='row'>
+        <div class='col-12 my-2'>
+          <%= f.label :to_raise, "Amount you pledge to raise" %>
+          <%= f.select :to_raise, options_for_select([['$150.00', 150.00], ['$100.00', 100.00]], f.object.to_raise), { prompt: "Make a Selection"}, class: 'form-control' %>          
+        </div>
+      </div>  
+      <div class='row'>
+        <div class='col-12 my-2'>
+          <%= f.label :shirt_size, "T-Shirt Size" %>
+          <%= f.select :shirt_size, options_for_select([['Small', "Small"], ['Medium', "Medium"]], f.object.shirt_size), { prompt: "Make a Selection"}, class: 'form-control' %>          
+        </div>    
+      </div>
+      <div class='row'>
+        <div class='col-12 my-2'>
+          <div class="form-check">
+            <label class="form-check-label">
+            <%= f.check_box :accepted_terms, class: 'form-check-input' %>
+            I Agree to this events <a href='#exampleModal' data-toggle="modal">Terms and Conditions</a>
+          </label>
+          </div>        
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-12 my-2'>
+          <div class='row'>
+            <div class='col-md-6 col-lg-5 offset-lg-1 my-2'>
+              <%= f.submit(@fundraiser.new_record? ? "Submit Sponsorship" : "Update Sponsorship", class: 'btn btn-success btn-block') %>              
+            </div>
+            <div class='col-md-6 col-lg-5 my-2'>
+              <%= link_to "Cancel", @fundraiser.new_record? ? event_path(@event) : sponsor_path(@fundraiser), class: 'btn btn-danger btn-block' %>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Event Terms and Conditions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        I agree, for myself, my heirs, executors and administrators, to not sue and to release, 
+        indemnify and hold harmless the Neurofibromatosis Network, its affiliates, officers, directors, 
+        volunteers and employees, and all sponsoring businesses and organizations and their agents and employees, 
+        from any and all liability, claims, demands and causes of action whatsoever, arising out of my participation
+        in this event, including pre-and post-event activities, whether it results from the negligence of any 
+        of the above or from any other cause. I attest and verify that I am sufficiently physically fit to 
+        participate in this event, and that I have no medical condition that prevents me from safely participating 
+        herein. I understand that the Neurofibromatosis Network, its sponsors, and/or news organizations will be 
+        photographing and videotaping this event. I agree that any photographs, videotapes or other images containing 
+        my likeness are the sole property of the photographer and the Neurofibromatosis Network. I authorize the 
+        foregoing accounts, for publicity, in promotional material, and for any other lawful purpose.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

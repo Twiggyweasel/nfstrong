@@ -1,0 +1,39 @@
+AllCops:
+  Excludes:
+    - db/schema.rb
+    - config/environments/*.rb
+    - config/initializers/*.rb
+    - config/puma.rb
+    - config/enviroment.rb
+    - config/spring.rb
+    - config/application.rb
+    - spec/*.rb
+    - spec/controllers/*/*.rb
+    - spec/controllers/*.rb
+    - spec/helpers/*/*.rb
+    - spec/mailers/*/*.rb
+    - spec/mailers/*.rb
+    - spec/models/*.rb
+    - spec/requests/*.rb
+    - spec/routing/*.rb
+    - spec/views/*/*.rb
+    - test/controllers/*.rb
+    - test/fixtures/*.rb
+    - test/helpers/*.rb
+    - test/integration/*.rb
+    - test/mailers/*.rb
+    - test/models/*.rb
+    - test/system/*.rb
+    - test/*.rb
+    - Gemfile
+    - bin/*
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*.rb
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*.rb
+
+Metrics/LineLength:
+  Max: 500

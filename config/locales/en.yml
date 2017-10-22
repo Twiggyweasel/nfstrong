@@ -1,0 +1,70 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  activerecord:
+    attributes:
+      registration:
+        fee: "Registration fee"
+        accepted_terms: "The event terms and conditions"
+        shirt_size: "A t-shirt size"
+      event:
+        goal: "Goal"
+    errors:
+      models:
+        registration:
+          attributes:
+            fee:
+              blank: "needs to be selected"
+            accepted_terms:
+              acceptance: "must be accepted"
+            shirt_size:
+              blank: "must be selected"
+        event:
+          attributes:
+            goal:
+              blank: "Goal can't be blank"
+            category:
+              blank: "Category can't be blank"
+            venue_name:
+              blank: "Venue Name can't be blank"
+            street:
+              blank: "Street can't be blank"
+            city:
+              blank: "City can't be blank"
+            state:
+              blank: "State can't be blank"
+            zipcode:
+              blank: "Zipcode can't be blank"
+            event_start:
+              blank: "Event start date can't be blank"
+            event_stop:
+              blank: "Event stop date can't be blank"

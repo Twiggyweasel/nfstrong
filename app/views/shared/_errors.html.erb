@@ -1,0 +1,12 @@
+<div class='row justify-content-center'>
+  <div class='col-md-8 col-xl-4 offset-xl-4 mt-3'>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">The following errors need to be resolved:</h4>
+      <ul>
+        <% errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

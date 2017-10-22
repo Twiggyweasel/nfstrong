@@ -1,0 +1,41 @@
+<%= form_for([@user, @runner]) do |f| %>
+  <div class='row my-2'>
+    <div class='col-md-6'>
+      <%= f.label :event, "Name of Event" %>
+      <%= f.text_field :event, class: 'form-control' %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.label :date, "Date of Event" %>
+      <%= f.date_field :date, class: 'form-control' %>
+    </div>
+  </div>
+  <div class='row my-2'>
+    <div class='col-md-6'>
+      <%= f.label :event_url, "Event Website" %>
+      <%= f.text_field :event_url, class: 'form-control' %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.label :goal, "Fundraising Goal" %>
+      <%= f.number_field :goal, class: 'form-control' %>
+    </div>
+  </div>
+  <div class='row my-2'>
+    <div class='col-md-6'>
+      <%= f.label :city, "Event City" %>
+      <%= f.text_field :event_url, class: 'form-control' %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.label :state, "Event State" %>
+      <%= f.select :state, options_for_select(states, f.object.state), { }, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-6 my-2'>
+      <%= f.submit(@runner.new_record? ? "Submit Registration" : "Update Details", class: 'btn btn-success btn-block') %>
+    </div>
+    <div class='col-md-6 my-2'>
+      <%= link_to 'Cancel', runners_path, class: 'btn btn-danger btn-block' %>
+    </div>
+  </div>
+<% end %>
